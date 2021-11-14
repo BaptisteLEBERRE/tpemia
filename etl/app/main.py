@@ -17,7 +17,7 @@ GE_STATIC_ROOT: Final = "/great-expectations"
 
 app = FastAPI()
 # app.mount(GE_STATIC_ROOT, StaticFiles(directory="./great_expectations/data_docs/local_site"),
-#           name="great-expectations-local-site")
+#          name="great-expectations-local-site")
 
 meteo_france_service: Final = MeteoFranceService()
 rte_france_service: Final = RTEFranceService()

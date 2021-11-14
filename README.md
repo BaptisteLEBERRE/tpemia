@@ -25,14 +25,6 @@ Pour builder l'image :
 docker-compose -f docker-compose-etl.yml --env-file ./.env up --build --no-deps
 ```
 
-Les urls
-- MinIO : http://0.0.0.0:9000/
-- MLflow : http://0.0.0.0:5000
-- Training_api : http://0.0.0.0:8000/docs
-- Serving_api : http://0.0.0.0:8001/docs
-- locust : http://0.0.0.0:8089
-
-
 Adresse ETL : http://localhost:81/docs
 Adresse GreatExpectation : http://localhost:81/great-expectations
 
@@ -78,3 +70,22 @@ en rajoutant la partie prédiction :
 ```bash
 docker-compose -f docker-compose-predict.yml --env-file ./.env up --build --no-deps
 ```
+
+Les urls
+- MinIO : http://0.0.0.0:9000/
+- MLflow : http://0.0.0.0:5000
+- Training_api : http://0.0.0.0:8000/docs
+- Serving_api : http://0.0.0.0:8001/docs
+- locust : http://0.0.0.0:8089
+
+## Monitoring
+
+On rajoute 2 images pour pouvoir faire le monitoring : Prometheus, Grafana
+Pour builder et lancer les containers :
+```bash
+docker-compose -f docker-compose-monitoring_1.yml --env-file ./.env up --build --no-deps
+```
+
+Les urls
+- Prometheus : http://0.0.0.0:9090/
+- Grafana : http://0.0.0.0:3000/
