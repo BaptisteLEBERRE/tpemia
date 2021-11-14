@@ -1,6 +1,6 @@
-# ATELIER EMIA
+# MLOps connecting the dots
 
-Le TP sera décomposer en 3 parties : 
+Le TP sera décomposer en 3 parties :
 - DataOps avec la mise en place d'une ETL
 - MLOps avec la mise en place d'un pipeline d'entrainement et d'un service d'inference
 - Monitoring avec la mise en place de brique pour compléter le monitoring de l'application
@@ -22,8 +22,16 @@ Quelques commandes docker utiles :
 Une seule image est utilisée : dossier ETL
 Pour builder l'image :
 ```bash
-docker-compose -f docker-compose-etl.yml --env-file ./.env up --build --no-deps 
+docker-compose -f docker-compose-etl.yml --env-file ./.env up --build --no-deps
 ```
+
+Les urls
+- MinIO : http://0.0.0.0:9000/
+- MLflow : http://0.0.0.0:5000
+- Training_api : http://0.0.0.0:8000/docs
+- Serving_api : http://0.0.0.0:8001/docs
+- locust : http://0.0.0.0:8089
+
 
 Adresse ETL : http://localhost:81/docs
 Adresse GreatExpectation : http://localhost:81/great-expectations
@@ -57,3 +65,16 @@ ex : http://localhost:81/merge-curated-data?dataset_name=2020_01_06
 #### GET /validate-refined-data
 Etape de validation des données
 ex : http://localhost:81/validate-refined-data?dataset_name=2020_01_06
+
+
+## MLOps
+
+On rajoute plusieurs images : S3 (MinIO pour simuler un S3), DB (mysql), MLflow, training_api, serving_api, load_testing_service (locust)
+Pour builder et lancer les containers :
+```bash
+docker-compose -f docker-compose-training.yml --env-file ./.env up --build --no-deps
+```
+en rajoutant la partie prédiction :
+```bash
+docker-compose -f docker-compose-predict.yml --env-file ./.env up --build --no-deps
+```
